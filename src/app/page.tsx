@@ -251,7 +251,7 @@ export default function HomePage() {
     offset: ["start start", "end start"],
   });
   const dashboardY = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const dashboardOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.25]);
+  const dashboardOpacity = useTransform(scrollYProgress, [0.65, 1], [1, 0]);
 
   const parseCOP = (v: string) => parseFloat(v.replace(/[^0-9.]/g, "")) || 0;
 
@@ -382,7 +382,7 @@ export default function HomePage() {
               flexWrap: "wrap",
             }}
           >
-            <AnimatedButton href="#" variant="primary" size="lg">
+            <AnimatedButton href="https://app.vensato.com/register" variant="primary" size="lg">
               Crear mi cuenta gratis
             </AnimatedButton>
             <AnimatedButton href="#features" variant="outline" size="lg">

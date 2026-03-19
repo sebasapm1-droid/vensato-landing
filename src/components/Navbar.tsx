@@ -92,7 +92,10 @@ export default function Navbar() {
                 {l.label}
               </motion.a>
             ))}
-            <AnimatedButton href="#" variant="primary" size="sm">
+            <AnimatedButton href="https://app.vensato.com/login" variant="white" size="sm">
+              Ingresar a la App
+            </AnimatedButton>
+            <AnimatedButton href="https://app.vensato.com/register" variant="primary" size="sm">
               Crear cuenta sin costo
             </AnimatedButton>
           </nav>
@@ -159,7 +162,10 @@ export default function Navbar() {
                 {l.label}
               </a>
             ))}
-            <AnimatedButton href="#" variant="primary" size="sm">
+            <AnimatedButton href="https://app.vensato.com/login" variant="white" size="sm">
+              Ingresar a la App
+            </AnimatedButton>
+            <AnimatedButton href="https://app.vensato.com/register" variant="primary" size="sm">
               Crear cuenta sin costo
             </AnimatedButton>
           </motion.div>

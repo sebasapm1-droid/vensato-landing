@@ -6,7 +6,7 @@ interface AnimatedButtonProps {
   children: React.ReactNode;
   href?: string;
   onClick?: () => void;
-  variant?: "primary" | "outline" | "ghost";
+  variant?: "primary" | "outline" | "ghost" | "white";
   size?: "sm" | "md" | "lg";
   fullWidth?: boolean;
   type?: "button" | "submit";
@@ -39,6 +39,15 @@ const styles = {
     },
     hover: { scale: 1.03, color: "var(--color-sage)" },
     shadow: "none",
+  },
+  white: {
+    base: {
+      background: "#fff",
+      color: "var(--color-ink)",
+      border: "2px solid rgba(31,41,36,0.12)",
+    },
+    hover: { scale: 1.04, filter: "brightness(0.96)" },
+    shadow: "0 2px 12px rgba(31,41,36,0.08)",
   },
 };
 
