@@ -6,28 +6,24 @@ import SectionWrapper from "./SectionWrapper";
 
 const faqs = [
   {
+    q: "¿El Asistente Vensato es un chatbot genérico?",
+    a: "No. Es un asistente operativo y administrativo dentro del dashboard. Puede consultar propiedades, inquilinos, cobros, contratos y documentos, leer texto extraído y ayudarte a actualizar campos clave del portafolio.",
+  },
+  {
+    q: "¿En qué planes está disponible el Asistente Vensato?",
+    a: "Está disponible en Inicio, Portafolio y Patrimonio. El plan Base no incluye acceso al asistente.",
+  },
+  {
+    q: "¿Qué significa envío de cuentas de cobro por correo?",
+    a: "Es una funcionalidad transaccional enfocada en recaudo inmobiliario. Vensato genera la cuenta de cobro en PDF y la envía al correo del inquilino con trazabilidad desde la plataforma.",
+  },
+  {
+    q: "¿El envío por correo es manual o automático?",
+    a: "Depende del plan. Inicio incluye envío manual. Portafolio y Patrimonio incluyen envío manual y automático, incluyendo el recordatorio 5 días antes del vencimiento.",
+  },
+  {
     q: "¿Vensato retiene el dinero de mis arriendos?",
-    a: "No. El dinero va directamente de tu inquilino a tu cuenta bancaria personal o a tu propia pasarela de pagos. Vensato es una plataforma de gestión, no un intermediario financiero ni una billetera digital.",
-  },
-  {
-    q: "¿Necesito estar registrado en una pasarela de pagos para usar Vensato?",
-    a: "No es obligatorio. El Plan Base te permite cobrar mediante transferencia bancaria tradicional a través de Nequi, Llave u otros bancos, sin ninguna comisión ni integración adicional.",
-  },
-  {
-    q: "¿Cómo funciona la automatización del cobro con Wompi?",
-    a: "En el Plan Portafolio puedes vincular tu cuenta personal de Wompi. Vensato genera y envía automáticamente un link de pago a cada inquilino, y el dinero llega directo a tu cuenta registrada en Wompi, sin pasar por Vensato.",
-  },
-  {
-    q: "¿Qué es la Bóveda Documental?",
-    a: "Es un repositorio seguro en la nube donde centralizas contratos de arrendamiento, pólizas, documentos de codeudores y cualquier soporte relevante. Disponible en el Plan Portafolio en adelante.",
-  },
-  {
-    q: "¿Cómo calcula Vensato el incremento del IPC?",
-    a: "Vensato consume el dato oficial del IPC publicado por el DANE cada año y genera automáticamente una alerta con el nuevo valor de arriendo ajustado para cada contrato vigente, antes de que venza el plazo legal.",
-  },
-  {
-    q: "¿Puedo manejar varias propiedades con distintos propietarios?",
-    a: "Sí. El Plan Patrimonio permite hasta 4 usuarios con roles y permisos diferenciados, ideal para estructuras familiares o sociedades de copropiedad.",
+    a: "No. Vensato no es una billetera ni un intermediario financiero. El objetivo es ayudarte a administrar y cobrar mejor, no retener tus fondos.",
   },
 ];
 
@@ -131,7 +127,6 @@ export default function FaqSection() {
       }}
     >
       <div style={{ maxWidth: "760px", margin: "0 auto" }}>
-        {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "56px" }}>
           <p
             style={{
@@ -160,14 +155,12 @@ export default function FaqSection() {
           </h2>
         </div>
 
-        {/* FAQ list */}
         <div>
           {faqs.map((item, i) => (
             <FaqItem key={item.q} item={item} index={i} />
           ))}
         </div>
 
-        {/* Bottom nudge */}
         <div
           style={{
             marginTop: "48px",
@@ -186,7 +179,7 @@ export default function FaqSection() {
               marginBottom: "4px",
             }}
           >
-            ¿Tienes otra pregunta?
+            {"¿Tienes otra pregunta?"}
           </p>
           <motion.a
             href="#"
@@ -200,7 +193,7 @@ export default function FaqSection() {
               transition: "color 0.2s",
             }}
           >
-            Escribenos a hola@vensato.com
+            {"Escríbenos a hola@vensato.com"}
           </motion.a>
         </div>
       </div>

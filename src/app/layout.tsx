@@ -17,10 +17,13 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Vensato — Tu portafolio inmobiliario, sin Excel, sin caos",
   description:
-    "Vensato es el Property Management System premium para inversionistas inmobiliarios independientes en Colombia. Automatiza cobros PSE, calcula tu Cap Rate y gestiona inquilinos desde un solo lugar.",
+    "Vensato es el Property Management System para inversionistas inmobiliarios en Colombia. Usa el Asistente IA de Vensato, calcula tu rentabilidad real y gestiona inquilinos desde un solo lugar.",
   keywords: ["PMS", "propiedad", "inmobiliario", "Colombia", "PSE", "Cap Rate", "rentas", "gestion"],
+  icons: {
+    icon: "/branding/Vensato Favicon SVG.svg",
+  },
   openGraph: {
-    title: "Vensato — Tu portafolio inmobiliario, sin Excel, sin caos",
+    title: "Vensato — Tu portafolio inmobiliario, Automatizado, sin caos",
     description: "Automatiza cobros, calcula rentabilidad y gestiona inquilinos. Sin complicaciones.",
     url: "https://vensato.com",
     siteName: "Vensato",

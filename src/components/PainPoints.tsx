@@ -5,19 +5,19 @@ import SectionWrapper from "./SectionWrapper";
 
 const painPoints = [
   {
-    problem: "Olvidar el incremento anual de ley y el pago oportuno del predial.",
-    solution: "Alertas algorítmicas automáticas del incremento del IPC y el predial para que no pierda dinero.",
-    label: "IPC y Predial",
+    problem: "Perder horas buscando y actualizando datos de inquilinos, propiedades y contratos en hojas de calculo dispersas o carpetas fisicas.",
+    solution: "Un asistente de Inteligencia Artificial integrado que consulta y actualiza la informacion de tu portafolio al instante, con solo pedirselo en el chat.",
+    label: "Operación",
   },
   {
-    problem: "Desorden contable y conciliaciones manuales que consumen horas cada mes.",
-    solution: "Generación automática de cuentas de cobro en PDF enviadas directamente al inquilino.",
-    label: "Contabilidad",
+    problem: "Desorden contable y conciliaciones manuales sin trazabilidad que consumen horas cada mes.",
+    solution: "Generación automática de cuentas de cobro en PDF enviadas directamente al inquilino y recordatorios automáticos.",
+    label: "Recaudo",
   },
   {
-    problem: "Pagar el 10% de comisión mensual a la inmobiliaria sobre cada arriendo.",
-    solution: "Autogestión inteligente donde el propietario retiene el 100% de su rentabilidad.",
-    label: "Comisiones",
+    problem: "Desconocimiento de la rentabilidad real de cada inmueble al no tener centralizados gastos, ingresos y documentos de propiedad.",
+    solution: "Visibilidad absoluta de tu portafolio en tiempo real, permitiéndote tomar decisiones financieras basadas en datos claros, no en intuiciones.",
+    label: "Escalabilidad",
   },
 ];
 
@@ -69,7 +69,7 @@ export default function PainPoints() {
               margin: "0 auto",
             }}
           >
-            El arrendador independiente enfrenta tres pérdidas silenciosas cada mes.
+            La operación inmobiliaria se rompe cuando todo depende de seguimiento manual.
           </h2>
         </div>
 
@@ -219,3 +219,4 @@ export default function PainPoints() {
     </SectionWrapper>
   );
 }
+

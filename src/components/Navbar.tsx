@@ -55,15 +55,16 @@ export default function Navbar() {
           <a
             href="#"
             style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
-              fontSize: "1.5rem",
-              color: "var(--color-ink)",
+              display: "flex",
+              alignItems: "center",
               textDecoration: "none",
-              letterSpacing: "-0.02em",
             }}
           >
-            Vensato
+            <img 
+              src="/branding/Vensato Logo SVG.svg" 
+              alt="Vensato" 
+              style={{ height: "32px", width: "auto" }} 
+            />
           </a>
 
           {/* Desktop Nav */}

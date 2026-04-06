@@ -5,29 +5,29 @@ import { motion } from "framer-motion";
 interface PricingCardProps {
   tier: string;
   price: string;
-  priceAnnual?: string;
   period?: string;
   description: string;
-  features: string[];
+  highlights: string[];
+  inheritedFrom?: string;
+  assistantHighlight?: string;
   highlighted?: boolean;
   badge?: string;
   ctaLabel?: string;
-  isAnnual: boolean;
 }
 
 export default function PricingCard({
   tier,
   price,
-  priceAnnual,
   period = "/mes",
   description,
-  features,
+  highlights,
+  inheritedFrom,
+  assistantHighlight,
   highlighted = false,
   badge,
   ctaLabel = "Empezar ahora",
-  isAnnual,
 }: PricingCardProps) {
-  const displayPrice = isAnnual && priceAnnual ? priceAnnual : price;
+  const [propertiesHighlight, ...featureHighlights] = highlights;
 
   return (
     <motion.div
@@ -37,9 +37,7 @@ export default function PricingCard({
         background: highlighted ? "var(--color-ink)" : "var(--color-surface)",
         borderRadius: "24px",
         padding: "36px 32px",
-        border: highlighted
-          ? "2px solid var(--color-sage)"
-          : "1px solid var(--color-border)",
+        border: highlighted ? "2px solid var(--color-sage)" : "1px solid var(--color-border)",
         boxShadow: highlighted
           ? "0 20px 60px rgba(31,41,36,0.25), 0 0 0 1px rgba(107,144,128,0.3)"
           : "0 2px 16px rgba(31,41,36,0.06)",
@@ -48,10 +46,10 @@ export default function PricingCard({
         display: "flex",
         flexDirection: "column",
         gap: "4px",
-        transform: highlighted ? "scale(1.04)" : "scale(1)",
+        height: "100%",
+        transform: highlighted ? "scale(1.03)" : "scale(1)",
       }}
     >
-      {/* Subtle gradient orb for highlighted */}
       {highlighted && (
         <div
           style={{
@@ -67,7 +65,6 @@ export default function PricingCard({
         />
       )}
 
-      {/* Badge */}
       {badge && (
         <div
           style={{
@@ -89,7 +86,6 @@ export default function PricingCard({
         </div>
       )}
 
-      {/* Tier name */}
       <p
         style={{
           fontFamily: "var(--font-sans)",
@@ -104,10 +100,9 @@ export default function PricingCard({
         {tier}
       </p>
 
-      {/* Price */}
       <div style={{ display: "flex", alignItems: "baseline", gap: "4px", marginBottom: "4px" }}>
         <motion.span
-          key={displayPrice}
+          key={price}
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
@@ -119,9 +114,9 @@ export default function PricingCard({
             lineHeight: 1,
           }}
         >
-          {displayPrice}
+          {price}
         </motion.span>
-        {displayPrice !== "Gratis" && (
+        {price !== "Gratis" && (
           <span
             style={{
               fontFamily: "var(--font-sans)",
@@ -134,45 +129,115 @@ export default function PricingCard({
         )}
       </div>
 
-      {/* Annual savings note */}
-      {isAnnual && priceAnnual && price !== "Gratis" && (
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "0.78rem",
-            color: highlighted ? "var(--color-sage-light)" : "var(--color-sage)",
-            fontWeight: 600,
-            marginBottom: "2px",
-          }}
-        >
-          ✓ Ahorras 2 meses al año
-        </p>
-      )}
-
-      {/* Description */}
       <p
         style={{
           fontFamily: "var(--font-sans)",
           fontSize: "0.875rem",
-          color: highlighted ? "rgba(255,255,255,0.6)" : "var(--color-muted)",
+          color: highlighted ? "rgba(255,255,255,0.68)" : "var(--color-muted)",
           lineHeight: 1.5,
-          marginBottom: "20px",
+          marginBottom: "18px",
           marginTop: "8px",
         }}
       >
         {description}
       </p>
 
-      {/* Divider */}
+      {assistantHighlight && (
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            alignSelf: "flex-start",
+            padding: "9px 14px",
+            borderRadius: "999px",
+            marginBottom: "14px",
+            background: highlighted ? "rgba(224,122,95,0.16)" : "rgba(224,122,95,0.1)",
+            border: highlighted ? "1px solid rgba(224,122,95,0.28)" : "1px solid rgba(224,122,95,0.18)",
+            color: highlighted ? "#F6D6CD" : "var(--color-oxide)",
+          }}
+        >
+          <span
+            style={{
+              width: "8px",
+              height: "8px",
+              borderRadius: "50%",
+              background: "currentColor",
+              flexShrink: 0,
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.78rem",
+              fontWeight: 700,
+              lineHeight: 1.2,
+            }}
+          >
+            {assistantHighlight}
+          </span>
+        </div>
+      )}
+
+      {propertiesHighlight && (
+        <div
+          style={{
+            borderRadius: "18px",
+            padding: "16px 18px",
+            marginBottom: "16px",
+            background: highlighted ? "rgba(107,144,128,0.16)" : "rgba(107,144,128,0.08)",
+            border: highlighted ? "1px solid rgba(107,144,128,0.26)" : "1px solid rgba(107,144,128,0.16)",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.68rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              fontWeight: 700,
+              color: highlighted ? "rgba(255,255,255,0.5)" : "var(--color-sage)",
+              marginBottom: "6px",
+            }}
+          >
+            Propiedades
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "1.15rem",
+              fontWeight: 700,
+              lineHeight: 1.15,
+              color: highlighted ? "#fff" : "var(--color-ink)",
+            }}
+          >
+            {propertiesHighlight}
+          </p>
+        </div>
+      )}
+
+      {inheritedFrom && (
+        <p
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "0.82rem",
+            fontWeight: 700,
+            color: highlighted ? "var(--color-sage-light)" : "var(--color-sage-dark)",
+            marginBottom: "16px",
+          }}
+        >
+          {inheritedFrom}
+        </p>
+      )}
+
       <div
         style={{
           height: "1px",
           background: highlighted ? "rgba(255,255,255,0.1)" : "var(--color-border)",
-          marginBottom: "20px",
+          marginBottom: "18px",
         }}
       />
 
-      {/* Features */}
       <ul
         style={{
           listStyle: "none",
@@ -183,13 +248,13 @@ export default function PricingCard({
           marginBottom: "28px",
         }}
       >
-        {features.map((f) => (
+        {featureHighlights.map((item) => (
           <li
-            key={f}
+            key={item}
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "0.875rem",
-              color: highlighted ? "rgba(255,255,255,0.85)" : "var(--color-ink)",
+              color: highlighted ? "rgba(255,255,255,0.88)" : "var(--color-ink)",
               display: "flex",
               alignItems: "flex-start",
               gap: "10px",
@@ -212,16 +277,23 @@ export default function PricingCard({
                 marginTop: "1px",
               }}
             >
-              ✓
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                <path
+                  d="M2 5.2 4.1 7.3 8 2.8"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </span>
-            {f}
+            {item}
           </li>
         ))}
       </ul>
 
-      {/* CTA */}
       <motion.a
-        href="#"
+        href="https://app.vensato.com/register"
         whileHover={{
           scale: 1.04,
           filter: highlighted ? "brightness(1.1)" : "brightness(0.97)",

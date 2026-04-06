@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
@@ -8,29 +8,35 @@ import AnimatedButton from "@/components/AnimatedButton";
 import SectionWrapper from "@/components/SectionWrapper";
 import FlipFeatureCard from "@/components/FlipFeatureCard";
 import PricingCard from "@/components/PricingCard";
-import BillingToggle from "@/components/BillingToggle";
 import PainPoints from "@/components/PainPoints";
 import FaqSection from "@/components/FaqSection";
 import AppPreviewSection from "@/components/AppPreviewSection";
 
 const HeroVisual = dynamic(() => import("@/components/HeroVisual"), { ssr: false });
 
-// ─── SVG Icons (no emojis) ────────────────────────────────────────────────────
+// --- SVG Icons (no emojis) ------------------------------------------------
 
-const IconRecaudo = () => (
+const IconAssistant = () => (
   <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-    <rect x="2" y="5" width="18" height="13" rx="3" stroke="#6B9080" strokeWidth="1.8" />
-    <path d="M2 9h18" stroke="#6B9080" strokeWidth="1.8" strokeLinecap="round" />
-    <rect x="5" y="13" width="5" height="2" rx="1" fill="#6B9080" />
+    <path d="M4 7a4 4 0 014-4h6a4 4 0 014 4v4a4 4 0 01-4 4h-3l-4 3v-3H8a4 4 0 01-4-4V7z" stroke="#6B9080" strokeWidth="1.8" strokeLinejoin="round" />
+    <circle cx="9" cy="10" r="1" fill="#6B9080" />
+    <circle cx="13" cy="10" r="1" fill="#6B9080" />
+  </svg>
+);
+
+const IconEmail = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+    <rect x="3" y="5" width="16" height="12" rx="3" stroke="#E07A5F" strokeWidth="1.8" />
+    <path d="M5.5 8l5.5 4.5L16.5 8" stroke="#E07A5F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
 const IconDocuments = () => (
   <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-    <path d="M6 2h7l5 5v13a1 1 0 01-1 1H6a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="#E07A5F" strokeWidth="1.8" strokeLinejoin="round" />
-    <path d="M13 2v5h5" stroke="#E07A5F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    <line x1="8" y1="12" x2="14" y2="12" stroke="#E07A5F" strokeWidth="1.8" strokeLinecap="round" />
-    <line x1="8" y1="15" x2="12" y2="15" stroke="#E07A5F" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M6 2h7l5 5v13a1 1 0 01-1 1H6a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="#6B9080" strokeWidth="1.8" strokeLinejoin="round" />
+    <path d="M13 2v5h5" stroke="#6B9080" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    <line x1="8" y1="12" x2="14" y2="12" stroke="#6B9080" strokeWidth="1.8" strokeLinecap="round" />
+    <line x1="8" y1="15" x2="12" y2="15" stroke="#6B9080" strokeWidth="1.8" strokeLinecap="round" />
   </svg>
 );
 
@@ -43,139 +49,137 @@ const IconDashboard = () => (
   </svg>
 );
 
-const IconAlert = () => (
+const IconContract = () => (
   <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-    <path d="M11 2a7 7 0 017 7v4l2 3H2l2-3V9a7 7 0 017-7z" stroke="#E07A5F" strokeWidth="1.8" strokeLinejoin="round" />
-    <path d="M9 19a2 2 0 004 0" stroke="#E07A5F" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M6 2h8l4 4v13a1 1 0 01-1 1H6a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="#E07A5F" strokeWidth="1.8" strokeLinejoin="round" />
+    <path d="M14 2v4h4" stroke="#E07A5F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    <line x1="8" y1="11" x2="15" y2="11" stroke="#E07A5F" strokeWidth="1.8" strokeLinecap="round" />
+    <line x1="8" y1="14" x2="13" y2="14" stroke="#E07A5F" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M8 17l1.6 1.4L13 15" stroke="#6B9080" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
-const IconInquilinos = () => (
+const IconMulti = () => (
   <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-    <circle cx="8" cy="7" r="3" stroke="#6B9080" strokeWidth="1.8" />
-    <path d="M2 20c0-3.314 2.686-6 6-6" stroke="#6B9080" strokeWidth="1.8" strokeLinecap="round" />
-    <circle cx="15" cy="7" r="3" stroke="#E07A5F" strokeWidth="1.8" />
-    <path d="M20 20c0-3.314-2.686-6-6-6" stroke="#E07A5F" strokeWidth="1.8" strokeLinecap="round" />
+    <circle cx="7" cy="8" r="3" stroke="#E07A5F" strokeWidth="1.8" />
+    <circle cx="15" cy="8" r="3" stroke="#6B9080" strokeWidth="1.8" />
+    <path d="M2.5 19c0-2.485 2.015-4.5 4.5-4.5" stroke="#E07A5F" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M19.5 19c0-2.485-2.015-4.5-4.5-4.5" stroke="#6B9080" strokeWidth="1.8" strokeLinecap="round" />
   </svg>
 );
 
-const IconContrato = () => (
-  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-    <path d="M5 2h9l5 5v13a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="#6B9080" strokeWidth="1.8" strokeLinejoin="round" />
-    <path d="M14 2v5h5" stroke="#6B9080" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M7 14l2 2 4-4" stroke="#6B9080" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-// ─── Features Data ────────────────────────────────────────────────────────────
+// --- Features Data --------------------------------------------------------
 
 const features = [
   {
-    icon: <IconRecaudo />,
-    title: "Automatizacion del Recaudo",
+    icon: <IconAssistant />,
+    title: "Asistente Vensato",
     description:
-      "Cobra por transferencia directa a costo cero, o automatiza links de pago integrando tu cuenta personal de Wompi. El dinero llega a tu cuenta sin intermediarios.",
+      "Consulta propiedades, inquilinos, cobros, contratos y documentos en lenguaje natural. Tambien lee texto extraido y actualiza campos clave sin salir del dashboard.",
+  },
+  {
+    icon: <IconEmail />,
+    title: "Automatización del Recaudo",
+    description:
+      "Genera un PDF de la cuenta de cobro y envíalo al inquilino, tú decides si enviarlo manualmente o de manera automática mes a mes.",
   },
   {
     icon: <IconDocuments />,
-    title: "Boveda Documental",
+    title: "Bóveda Documental",
     description:
-      "Un solo lugar para contratos de arrendamiento, polizas de cumplimiento y documentos de codeudores. Todo organizado, disponible y seguro en la nube.",
+      "Centraliza contratos, pólizas, identificaciones y soportes en un solo lugar para operar con más orden y tener la información lista cuando la necesites.",
+  },
+  {
+    icon: <IconContract />,
+    title: "Generación de Contratos",
+    description:
+      "Crea, personaliza y firma contratos de arrendamiento directamente en la plataforma. Sin impresoras, sin terceros.",
   },
   {
     icon: <IconDashboard />,
-    title: "Tableros de Rentabilidad",
+    title: "NOI y reportes avanzados",
     description:
-      "Visualizacion del Ingreso Operativo Neto (NOI) de cada propiedad, aislando cuotas de administracion, retefuente y gastos operativos. Claridad financiera real.",
+      "Visualiza ingresos, gastos, NOI y rentabilidad real del portafolio para tomar decisiones de operacion y crecimiento con mas claridad.",
   },
   {
-    icon: <IconAlert />,
-    title: "Alertas de IPC y Predial",
+    icon: <IconMulti />,
+    title: "Escalamos con tu portafolio",
     description:
-      "Algoritmos que monitorean el IPC del DANE y el calendario del predial. Nunca mas olvides un incremento de ley ni el pago de un impuesto.",
-  },
-  {
-    icon: <IconInquilinos />,
-    title: "Gestion de Inquilinos",
-    description:
-      "Registro centralizado de cada inquilino con su historial de pagos, documentos y comunicaciones. Sabe en todo momento quien te debe y cuanto.",
-  },
-  {
-    icon: <IconContrato />,
-    title: "Firma de Contratos",
-    description:
-      "Crea, personaliza y firma contratos de arrendamiento directamente en la plataforma. Sin impresoras, sin ir a la notaria, sin papel.",
+      "Comienza con lo básico, no es necesario pagarle el 8% a un tercero para que gestiones tu portafolio. Crecemos contigo.",
   },
 ];
 
-// ─── Pricing Data ─────────────────────────────────────────────────────────────
+// --- Pricing Data ---------------------------------------------------------
 
 const pricingTiers = [
   {
     tier: "Base",
     price: "Gratis",
-    priceAnnual: "Gratis",
-    description: "Para comenzar a ordenar tu portafolio sin pagar nada.",
-    features: [
-      "Hasta 2 propiedades",
-      "Contabilidad y seguimiento manual",
-      "Alertas automaticas de IPC y Predial",
-      "Cuentas de cobro en PDF al inquilino",
-      "Cobro por transferencia (Nequi / Llave / Bancos)",
-      "Gestion de inquilinos y contratos basicos",
-      "1 usuario",
+    description: "Para empezar a organizar un portafolio pequeño con lo esencial.",
+    highlights: [
+      "Hasta 2",
+      "Gestión de propiedades",
+      "Gestión de inquilinos",
+      "Gestión de contratos",
+      "Gestión de cobros",
+      "Dashboard básico",
     ],
-    highlighted: false,
     ctaLabel: "Empezar gratis",
+  },
+  {
+    tier: "Inicio",
+    price: "$15.900",
+    description: "El primer plan serio para operar tu portafolio con más orden y menos fricción.",
+    highlights: [
+      "Hasta 5",
+      "Bóveda documental",
+      "Envío manual de cuentas de cobro por email",
+    ],
+    assistantHighlight: "Incluye Asistente IA Vensato",
+    inheritedFrom: "Todo lo del plan Base +",
+    ctaLabel: "Elegir Inicio",
   },
   {
     tier: "Portafolio",
     price: "$35.000",
-    priceAnnual: "$28.000",
-    description: "Para el inversionista activo que quiere automatizar y escalar.",
-    features: [
-      "Todo lo del plan Base",
-      "Hasta 15 propiedades",
-      "Automatizacion de links de cobro via Wompi",
-      "Boveda documental en la nube",
-      "Tableros de rentabilidad y NOI",
-      "Reportes financieros avanzados",
-      "Recordatorios automaticos por Email",
+    description: "Ideal para propietarios activos que quieren automatización real, visibilidad financiera y más control.",
+    highlights: [
+      "Hasta 15",
+      "Reportes financieros",
+      "NOI y rentabilidad",
+      "Envío automático de cuentas de cobro por email",
     ],
+    assistantHighlight: "Incluye Asistente IA Vensato",
+    inheritedFrom: "Todo lo del plan Inicio +",
     highlighted: true,
-    badge: "Tendencia",
+    badge: "Recomendado",
     ctaLabel: "Elegir Portafolio",
   },
   {
     tier: "Patrimonio",
-    price: "$79.000",
-    priceAnnual: "$63.000",
-    description: "Para portafolios grandes y estructuras de copropiedad.",
-    features: [
-      "Todo lo del plan Portafolio",
-      "Propiedades ilimitadas",
-      "Hasta 4 usuarios con permisos diferenciados",
-      "Recordatorios automaticos por WhatsApp",
-      "Facturacion electronica DIAN integrada",
-      "Division de copropiedad",
-      "Exportacion contable avanzada",
+    price: "$85.000",
+    description: "La capa premium para portafolios más amplios, con más holgura operativa y proyección de crecimiento.",
+    highlights: [
+      "Ilimitadas",
+      "Bóveda documental",
+      "Operación premium para escalar tu portafolio",
     ],
-    highlighted: false,
+    assistantHighlight: "Incluye Asistente IA Vensato",
+    inheritedFrom: "Todo lo del plan Portafolio +",
     ctaLabel: "Elegir Patrimonio",
   },
 ];
 
-// ─── Logo Cloud ───────────────────────────────────────────────────────────────
-
+// --- Logo Cloud -----------------------------------------------------------
 const logoCloud = [
   { name: "PSE", subtitle: "Pagos seguros" },
-  { name: "Bancolombia", subtitle: "Vinculacion" },
-  { name: "Davivienda", subtitle: "Vinculacion" },
-  { name: "Nequi", subtitle: "Transferencias" },
-  { name: "Wompi", subtitle: "Links de pago" },
+  { name: "Bancolombia", subtitle: "Transferencias" },
+  { name: "Davivienda", subtitle: "Transferencias" },
+  { name: "Nequi", subtitle: "Cobro directo" },
+  { name: "Wompi", subtitle: "Automatizacion" },
 ];
 
-// ─── Hero stagger variants ────────────────────────────────────────────────────
+// --- Hero stagger variants -----------------------------------------------
 
 const heroContainer = {
   hidden: {},
@@ -187,7 +191,7 @@ const heroItem = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } },
 };
 
-// ─── Cap Rate Result ──────────────────────────────────────────────────────────
+// --- Cap Rate Result -----------------------------------------------------
 
 function CapRateResult({ rate }: { rate: number | null }) {
   if (rate === null) return null;
@@ -236,16 +240,15 @@ function CapRateResult({ rate }: { rate: number | null }) {
   );
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
+// --- Page ----------------------------------------------------------------
 
 export default function HomePage() {
-  const [isAnnual, setIsAnnual] = useState(false);
   const [precio, setPrecio] = useState("");
   const [arriendo, setArriendo] = useState("");
   const [admin, setAdmin] = useState("");
   const [capRate, setCapRate] = useState<number | null>(null);
 
-  const heroRef = useRef(null);
+  const heroRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -268,7 +271,7 @@ export default function HomePage() {
     <>
       <Navbar />
 
-      {/* ─── HERO ─────────────────────────────────────────────── */}
+      {/* --- HERO -------------------------------------------------------- */}
       <section
         ref={heroRef}
         style={{
@@ -295,49 +298,18 @@ export default function HomePage() {
         />
 
         {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            background: "rgba(107,144,128,0.09)",
-            border: "1px solid rgba(107,144,128,0.22)",
-            borderRadius: "20px",
-            padding: "6px 18px",
-            marginBottom: "36px",
-            fontFamily: "var(--font-sans)",
-            fontSize: "0.8rem",
-            fontWeight: 600,
-            color: "var(--color-sage-dark)",
-          }}
-        >
-          <span
-            style={{
-              width: "6px",
-              height: "6px",
-              borderRadius: "50%",
-              background: "var(--color-sage)",
-              display: "inline-block",
-            }}
-          />
-          Property Management System para independientes
-        </motion.div>
-
         {/* Main copy */}
         <motion.div
           variants={heroContainer}
           initial="hidden"
           animate="visible"
-          style={{ maxWidth: "860px", margin: "0 auto" }}
+          style={{ maxWidth: "920px", margin: "0 auto" }}
         >
           <motion.h1
             variants={heroItem}
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(2.4rem, 5.8vw, 4.2rem)",
+              fontSize: "clamp(2.4rem, 5.8vw, 4.3rem)",
               fontWeight: 700,
               color: "var(--color-ink)",
               lineHeight: 1.08,
@@ -345,7 +317,7 @@ export default function HomePage() {
               marginBottom: "28px",
             }}
           >
-            Gestiona, cobra y{" "}
+            La forma más{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, var(--color-sage) 0%, var(--color-sage-light) 100%)",
@@ -354,9 +326,19 @@ export default function HomePage() {
                 backgroundClip: "text",
               }}
             >
-              maximiza la rentabilidad
+              inteligente
             </span>{" "}
-            de tus arriendos.
+            de gestionar tus{" "}
+            <span
+              style={{
+                background: "linear-gradient(135deg, var(--color-sage) 0%, var(--color-sage-light) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              propiedades
+            </span>
           </motion.h1>
 
           <motion.p
@@ -366,11 +348,11 @@ export default function HomePage() {
               fontSize: "clamp(0.975rem, 2vw, 1.1rem)",
               color: "var(--color-muted)",
               lineHeight: 1.7,
-              maxWidth: "560px",
-              margin: "0 auto 40px",
+              maxWidth: "720px",
+              margin: "0 auto 34px",
             }}
           >
-            El fin del Excel en tus inversiones inmobiliarias. Cobros automatizados, IPC calculado y contratos organizados. Todo tu portafolio desde una sola pantalla, sin pagarle comisiones a nadie.
+            Centraliza la gestión de tus inmuebles. Carga documentos, fotos, contratos, etc. Conversa con nuestro asistente IA diseñado para ahorrarte horas de trabajo. Toma el control de tus rentas con automatización de cobros.
           </motion.p>
 
           <motion.div
@@ -380,60 +362,17 @@ export default function HomePage() {
               gap: "14px",
               justifyContent: "center",
               flexWrap: "wrap",
+              marginBottom: "40px",
             }}
           >
             <AnimatedButton href="https://app.vensato.com/register" variant="primary" size="lg">
               Crear mi cuenta gratis
             </AnimatedButton>
-            <AnimatedButton href="#features" variant="outline" size="lg">
-              Ver caracteristicas
+            <AnimatedButton href="#pricing" variant="outline" size="lg">
+              Ver planes y beneficios
             </AnimatedButton>
           </motion.div>
-        </motion.div>
 
-        {/* Social proof */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
-          style={{
-            display: "flex",
-            gap: "clamp(28px, 6vw, 60px)",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            margin: "52px 0 64px",
-          }}
-        >
-          {[
-            { val: "$0", label: "Costo por transferencia directa" },
-            { val: "10%", label: "De comisión que ya no pagas" },
-            { val: "100%", label: "De tu rentabilidad, en tus manos" },
-          ].map((s) => (
-            <div key={s.label} style={{ textAlign: "center" }}>
-              <p
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "2.5rem",
-                  fontWeight: 700,
-                  color: "var(--color-ink)",
-                  lineHeight: 1,
-                  marginBottom: "4px",
-                }}
-              >
-                {s.val}
-              </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "1rem",
-                  color: "var(--color-muted)",
-                  fontWeight: 500,
-                }}
-              >
-                {s.label}
-              </p>
-            </div>
-          ))}
         </motion.div>
 
         {/* Hero Visual Float */}
@@ -454,7 +393,7 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* ─── LOGO CLOUD ───────────────────────────────────────── */}
+      {/* --- LOGO CLOUD -------------------------------------------------- */}
       <SectionWrapper>
         <div
           style={{
@@ -476,7 +415,7 @@ export default function HomePage() {
               marginBottom: "28px",
             }}
           >
-            Conecta tus cobros facilmente con
+            Automatiza recaudo y operacion con
           </p>
 
           {/* Marquee container - Constrained to central area */}
@@ -539,10 +478,10 @@ export default function HomePage() {
       </SectionWrapper>
 
 
-      {/* ─── PAIN POINTS ──────────────────────────────────────── */}
+      {/* --- PAIN POINTS ------------------------------------------------- */}
       <PainPoints />
 
-      {/* ─── FEATURES ─────────────────────────────────────────── */}
+      {/* --- FEATURES ---------------------------------------------------- */}
       <SectionWrapper id="features" style={{ padding: "100px 24px" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "64px" }}>
@@ -560,7 +499,7 @@ export default function HomePage() {
                 marginBottom: "12px",
               }}
             >
-              Caracteristicas clave
+              Capas de producto
             </motion.p>
             <h2
               style={{
@@ -574,14 +513,14 @@ export default function HomePage() {
                 margin: "0 auto",
               }}
             >
-              Todo lo que necesitas para administrar sin intermediarios.
+              Gestiona tu portafolio con IA contextual, cobro ordenado y automatización real.
             </h2>
           </div>
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
               gap: "20px",
             }}
           >
@@ -598,10 +537,10 @@ export default function HomePage() {
         </div>
       </SectionWrapper>
 
-      {/* ─── APP PREVIEW ──────────────────────────────────────── */}
+      {/* --- APP PREVIEW ------------------------------------------------- */}
       <AppPreviewSection />
 
-      {/* ─── SIMULADOR ────────────────────────────────────────── */}
+      {/* --- SIMULADOR --------------------------------------------------- */}
       <SectionWrapper id="simulator">
         <div
           style={{
@@ -669,7 +608,7 @@ export default function HomePage() {
                   marginBottom: "14px",
                 }}
               >
-                Cuanto te rinde realmente tu propiedad?
+                ¿Cuánto te rinde realmente tu propiedad?
               </h2>
               <p
                 style={{
@@ -679,7 +618,7 @@ export default function HomePage() {
                   lineHeight: 1.65,
                 }}
               >
-                Calcula tu Cap Rate en segundos. Asi de facil se ve el analisis con Vensato.
+                Calcula tu Cap Rate en segundos. Así de fácil se ve el análisis con Vensato.
               </p>
             </div>
 
@@ -762,15 +701,15 @@ export default function HomePage() {
                 marginTop: "16px",
               }}
             >
-              Estimacion orientativa. Vensato calcula datos reales de tu portafolio en tiempo real.
+              Estimación orientativa. Vensato calcula datos reales de tu portafolio en tiempo real.
             </p>
           </div>
         </div>
       </SectionWrapper>
 
-      {/* ─── PRICING ──────────────────────────────────────────── */}
+      {/* --- PRICING ----------------------------------------------------- */}
       <SectionWrapper id="pricing" style={{ padding: "100px 24px" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1180px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "52px" }}>
             <p
               style={{
@@ -783,7 +722,7 @@ export default function HomePage() {
                 marginBottom: "12px",
               }}
             >
-              Planes
+              Nos ajustamos a tu portafolio
             </p>
             <h2
               style={{
@@ -793,32 +732,32 @@ export default function HomePage() {
                 color: "var(--color-ink)",
                 letterSpacing: "-0.03em",
                 lineHeight: 1.2,
-                marginBottom: "20px",
+                marginBottom: "18px",
               }}
             >
-              Precio transparente. Sin sorpresas.
+              Elige según el nivel de operación que necesitas hoy
             </h2>
             <p
               style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "0.95rem",
                 color: "var(--color-muted)",
-                marginBottom: "32px",
+                maxWidth: "780px",
+                margin: "0 auto",
+                lineHeight: 1.7,
               }}
             >
-              Empieza gratis. Escala cuando tu portafolio crezca.
+              Puedes cancelar o cambiar de plan en cualquier momento.
             </p>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <BillingToggle isAnnual={isAnnual} onChange={setIsAnnual} />
-            </div>
           </div>
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(265px, 1fr))",
               gap: "24px",
-              alignItems: "start",
+              alignItems: "stretch",
+              marginBottom: "32px",
             }}
           >
             {pricingTiers.map((tier, i) => (
@@ -827,12 +766,14 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.12, duration: 0.55 }}
+                transition={{ delay: i * 0.1, duration: 0.55 }}
+                style={{ height: "100%" }}
               >
-                <PricingCard {...tier} isAnnual={isAnnual} />
+                <PricingCard {...tier} />
               </motion.div>
             ))}
           </div>
+
 
           <p
             style={{
@@ -840,18 +781,18 @@ export default function HomePage() {
               fontSize: "0.78rem",
               color: "var(--color-muted)",
               textAlign: "center",
-              marginTop: "32px",
+              marginTop: "28px",
             }}
           >
-            Precios en pesos colombianos (COP) · IVA incluido · Cancela cuando quieras
+            Precios en pesos colombianos (COP) por mes. El envío de correo es transaccional y aplica exclusivamente para cuentas de cobro.
           </p>
         </div>
       </SectionWrapper>
 
-      {/* ─── FAQ ──────────────────────────────────────────────── */}
+      {/* --- FAQ --------------------------------------------------------- */}
       <FaqSection />
 
-      {/* ─── FOOTER ───────────────────────────────────────────── */}
+      {/* --- FOOTER ------------------------------------------------------ */}
       <footer
         style={{
           background: "var(--color-ink)",
@@ -871,17 +812,16 @@ export default function HomePage() {
             }}
           >
             <div style={{ maxWidth: "320px" }}>
-              <p
+              <img
+                src="/branding/Vensato Logo SVG Claro.svg"
+                alt="Vensato"
                 style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "1.6rem",
-                  fontWeight: 700,
-                  color: "#fff",
-                  marginBottom: "12px",
+                  height: "36px",
+                  width: "auto",
+                  marginBottom: "16px",
+                  display: "block",
                 }}
-              >
-                Vensato
-              </p>
+              />
               <p
                 style={{
                   fontFamily: "var(--font-sans)",
@@ -960,3 +900,4 @@ export default function HomePage() {
     </>
   );
 }
+
